@@ -1,12 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    package="com.example.hunter_navigator">
     <!-- GPS permissions -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.CAMERA"/>
     
     <application
-        android:label="hunter_navigator"
+        android:label="Навигатор активного отдыха"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
