@@ -772,37 +772,41 @@ class _MapScreenState extends State<MapScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text('${_modeTitle(point.mode)} • ${point.tag}'),
-        content: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Создана: ${_formatDateTime(point.createdAt)}'),
-            const SizedBox(height: 8),
-            Text('Комментарий: ${point.comment.isEmpty ? "—" : point.comment}'),
-            const SizedBox(height: 8),
-            Text('Широта: ${point.position.latitude}'),
-            Text('Долгота: ${point.position.longitude}'),
-            const SizedBox(height: 8),
-            Text('Фото: ${point.photoPath == null ? "нет" : "есть"}'),
-            if (point.photoPath != null) ...[
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Создана: ${_formatDateTime(point.createdAt)}'),
               const SizedBox(height: 8),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Image.file(
-                  File(point.photoPath!),
-                  height: 160,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) => Container(
-                    height: 160,
-                    alignment: Alignment.center,
-                    color: Colors.black12,
-                    child: const Text('Не удалось открыть фото'),
+              Text('Комментарий: ${point.comment.isEmpty ? "—" : point.comment}'),
+              const SizedBox(height: 8),
+              Text('Широта: ${point.position.latitude}'),
+              Text('Долгота: ${point.position.longitude}'),
+              const SizedBox(height: 8),
+              Text('Фото: ${point.photoPath == null ? "нет" : "есть"}'),
+              if (point.photoPath != null) ...[
+                const SizedBox(height: 8),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 420),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12),
+                    child: Image.file(
+                      File(point.photoPath!),
+                      height: 160,
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) => Container(
+                        height: 160,
+                        alignment: Alignment.center,
+                        color: Colors.black12,
+                        child: const Text('Не удалось открыть фото'),
+                      ),
+                    ),
                   ),
                 ),
-              ),
+              ],
             ],
-          ],
+          ),
         ),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context), child: const Text('ОК')),
