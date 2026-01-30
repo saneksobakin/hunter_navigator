@@ -28,12 +28,20 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  path: ^1.9.0
   flutter:
     sdk: flutter
-
-  flutter_map: ^6.2.1
+  flutter_map: ^8.0.0
+  geolocator: ^14.0.0
   latlong2: ^0.9.1
-  geolocator: ^13.0.1
+
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  path_provider: ^2.1.4
+
+  image_picker: ^1.2.0
+  flutter_map_tile_caching: ^10.1.1
+
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
